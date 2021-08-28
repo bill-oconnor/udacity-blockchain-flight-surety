@@ -13,6 +13,8 @@ let flightSuretyApp = new web3.eth.Contract(FlightSuretyApp.abi, config.appAddre
 flightSuretyApp.events.OracleRequest({
     fromBlock: 0
   }, function (error, event) {
+    // handle the request - there should be a series of oracles that respond to the request with the info
+    // need to verify that that is how this was intended to be simulated
     if (error) console.log(error)
     console.log(event)
 });

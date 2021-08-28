@@ -10,7 +10,7 @@ export default class Contract {
         this.flightSuretyApp = new this.web3.eth.Contract(FlightSuretyApp.abi, config.appAddress);
         this.initialize(callback);
         this.owner = null;
-        this.airlines = [];
+        this.airlines = []; // what are these for...would have thought there was one airline
         this.passengers = [];
     }
 

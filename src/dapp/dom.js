@@ -20,7 +20,7 @@ export default class DOM {
       `role`,
     ];
     
-    static elid(id) { 
+    static elementById(id) { 
       return document.getElementById(id);
     }
   

@@ -1,0 +1,44 @@
+Project Summary:
+
+Airlines are able to register with the contract to offer insurance for their flights
+  1. they must put up 10 ether to register
+  2. airline can register its flights for insurability
+  3. in order to be registered, must gain approval from another airline, until there are 5. then needs 50%
+  4. for this to happen, the first airline must be registered when the contract is deployed.
+    - I don't know how to do this. I don't want it to be the deployer
+
+Oracles are able to register with the application. The process for registering is as follows:
+  1. Somehow, an oracle (our node service) has the contract address, and sends a request to register itself
+  4. oracles are stored as a mapping of address => uint8[3]
+  5. when a request is sent to the oracles, an index will be generated that determines which oracle(s?) we are accepting a response from.
+
+We will simulate the activity (responding to requests) and registration of oracles by listening for certain events in the node service
+
+The Dapp allows a user to send Eth as insurance payment, then check a flight number to see the status of the flight
+The status of the flight is provided back to the user via the following process:
+  1. user makes a request to the contract
+  2. contract emits event for oracle request
+  3. node server is listening for the event from the contract
+  4. node server is pretending to be many oracles, and some of them send back a response
+  5. contract processes the responses, and once it gets the consensus from the oracles it wanted, it approves that as the status
+  6. Once the status is approved, it is emitted as an Oracle response event, which the UI is listening for. If it is cancelled, there will be a mapping for the user to withdraw the funds
+  7. The UI tells the status to the user, and if allowed, the user can request the redemption of funds
+
+Approach:
+  0. set appContract property in the Data contract when it is deployed
+  1. fill in the contracts' airline and flight registration methods
+  2. test the contracts' airline and flight registration methods
+  3. allow user to purchase insurance (contract)
+  4. register oracles (contract)
+  5. handle flight status request (contract)
+  6. handle oracle response (contract)
+  7. handle cancelled flight (contract)
+  8. Node service - create oracles
+  9. Node service - handle oracle request
+  10. client - request all flight info
+  11. client - purchase insurance
+  12. client - button to register the oracles
+  13. client - request the status of a flight from contract
+
+
+Definitely re-read all the notes from this section of the course
